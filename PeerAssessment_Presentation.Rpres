@@ -1,0 +1,76 @@
+National Health Services Shiny App
+========================================================
+author: Aaron Kleyn
+date: 3-18-3015
+transition: concave
+
+National Health Services App
+========================================================
+
+This Shiny app was developed to analyze the National 
+Health Services website user data.
+The app returns the following data:
+
+- Users (National Health Service employees, other, or both)
+- Bounce Rate
+- Total Time 
+
+This application provides users with an interactive interface that 
+produces visual plots of the the data based on a user specified date 
+range.
+
+***
+
+This App is a modification of the app from the textbook "Web Application Development with R using Shiny."
+
+
+
+R code demonstration
+========================================================
+
+```{r, echo=FALSE}
+library(plyr)
+library(ggplot2)
+library(shiny)
+data<-read.csv("NHS.csv")
+attach(data)
+
+```
+```{r}
+"Visitors per hour: Mean and Standard Deviation"
+ mean(visitors)
+ sd(visitors)
+
+```
+
+
+Box plot of NHS website users per hr
+========================================================
+
+```{r, echo=FALSE}
+# Boxplots of mpg by number of gears 
+# observations (points) are overlayed and jittered
+qplot(Domain, visits, data=data, geom=c("boxplot", "jitter"), 
+   fill=Domain, main="Users: NHS employeers vs. Others",
+   xlab="", ylab="Number of visits per hour")
+```
+
+
+
+
+Density plot of NHS website users
+========================================================
+
+```{r, echo=FALSE}
+qplot(Domain, data=data, geom="density", fill=Domain, alpha=I(.5), 
+   main="Distribution of Visits by Usert Type", xlab="", 
+   ylab="Density")
+```
+
+Great analysis tool for anyone
+========================================================
+
+This tool is great for anyone looking to visually see the type and frequency
+of users that visit the National Health Services website.
+
+Please feel free to use this Shiny application.
